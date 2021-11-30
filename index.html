@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake API</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Lato', sans-serif;
+        }
+
+        a {
+            color: #0099cc;
+        }
+
+        .api, table {
+            width: 300px;
+        }
+
+        td {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-bottom: 0.775rem;
+        }
+
+        td:first-child {
+            padding-left: 0;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+<h1>Fake API by rtcoder</h1>
+<div class="api">
+    <h2>Resources</h2>
+    <div class="links">
+        <table>
+            <thead>
+            <tr>
+                <th style="width: 130px;"></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a target="_blank" href="./users.json">/users.json</a></td>
+                <td>100 users</td>
+            </tr>
+            <tr>
+                <td><a target="_blank" href="./todos.json">/todos.json</a></td>
+                <td>1000 todos</td>
+            </tr>
+            <tr>
+                <td><a target="_blank" href="./posts.json">/posts.json</a></td>
+                <td>1000 posts</td>
+            </tr>
+            <tr>
+                <td><a target="_blank" href="./comments.json">/comments.json</a></td>
+                <td>5000 comments</td>
+            </tr>
+            <tr>
+                <td><a target="_blank" href="./albums.json">/albums.json</a></td>
+                <td>500 albums</td>
+            </tr>
+            <tr>
+                <td><a target="_blank" href="./photos.json">/photos.json</a></td>
+                <td>25000 photos</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
