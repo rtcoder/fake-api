@@ -18,28 +18,114 @@
             align-items: center;
             justify-content: center;
             font-family: 'Lato', sans-serif;
+            padding: 0 15px;
         }
 
         a {
             color: #0099cc;
         }
 
-        .api, table {
-            width: 300px;
+        .api, table, .result {
+            width: 100%;
         }
 
         td {
             padding-left: 1rem;
             padding-right: 1rem;
-            padding-bottom: 0.775rem;
-        }
-
-        td:first-child {
-            padding-left: 0;
         }
 
         h1 {
             margin-bottom: 30px;
+        }
+
+        .result {
+            background: #2d2d2d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .url, pre {
+            font-family: monospace;
+            color: #dddddd;
+        }
+
+        .url {
+            background: #353535;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        pre {
+            max-height: 300px;
+            overflow: auto;
+            padding: 0 15px;
+        }
+
+        pre::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        pre::-webkit-scrollbar-track {
+            background: rgba(112, 112, 112, 0.23);
+        }
+
+        /* Handle */
+        pre::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        pre::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        code {
+            width: 100%;
+            white-space: break-spaces;
+        }
+
+        .string {
+            color: green;
+        }
+
+        .number {
+            color: darkorange;
+        }
+
+        .boolean {
+            color: blue;
+        }
+
+        .null {
+            color: magenta;
+        }
+
+        .key {
+            color: red;
+        }
+
+        button {
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            background: #2cb045;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        tbody tr {
+            height: 40px;
+        }
+
+        tr:hover {
+            background: #eaeaea;
         }
     </style>
 </head>
@@ -53,36 +139,101 @@
             <tr>
                 <th style="width: 130px;"></th>
                 <th></th>
+                <th style="width: 50px;"></th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td><a target="_blank" href="./users.json">/users.json</a></td>
+                <td><a target="_blank" href="https://rtcoder.github.io/fake-api/users.json">/users.json</a></td>
                 <td>100 users</td>
+                <td>
+                    <button type="button">Run</button>
+                </td>
             </tr>
             <tr>
-                <td><a target="_blank" href="./todos.json">/todos.json</a></td>
+                <td><a target="_blank" href="https://rtcoder.github.io/fake-api/todos.json">/todos.json</a></td>
                 <td>1000 todos</td>
+                <td>
+                    <button type="button">Run</button>
+                </td>
             </tr>
             <tr>
-                <td><a target="_blank" href="./posts.json">/posts.json</a></td>
+                <td><a target="_blank" href="https://rtcoder.github.io/fake-api/posts.json">/posts.json</a></td>
                 <td>1000 posts</td>
+                <td>
+                    <button type="button">Run</button>
+                </td>
             </tr>
             <tr>
-                <td><a target="_blank" href="./comments.json">/comments.json</a></td>
+                <td><a target="_blank" href="https://rtcoder.github.io/fake-api/comments.json">/comments.json</a></td>
                 <td>5000 comments</td>
+                <td>
+                    <button type="button">Run</button>
+                </td>
             </tr>
             <tr>
-                <td><a target="_blank" href="./albums.json">/albums.json</a></td>
+                <td><a target="_blank" href="https://rtcoder.github.io/fake-api/albums.json">/albums.json</a></td>
                 <td>500 albums</td>
+                <td>
+                    <button type="button">Run</button>
+                </td>
             </tr>
             <tr>
-                <td><a target="_blank" href="./photos.json">/photos.json</a></td>
+                <td><a target="_blank" href="https://rtcoder.github.io/fake-api/photos.json">/photos.json</a></td>
                 <td>25000 photos</td>
+                <td>
+                    <button type="button">Run</button>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
+
 </div>
+<div class="result">
+    <div class="url">https://example.url/here</div>
+    <pre><code></code></pre>
+</div>
+<script>
+    function syntaxHighlight(json) {
+        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+            let cls = 'number';
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    cls = 'key';
+                } else {
+                    cls = 'string';
+                }
+            } else if (/true|false/.test(match)) {
+                cls = 'boolean';
+            } else if (/null/.test(match)) {
+                cls = 'null';
+            }
+            return '<span class="' + cls + '">' + match + '</span>';
+        });
+    }
+
+    document.querySelector('.links table').addEventListener('click', event => {
+        const {target} = event;
+        if (target.tagName.toLowerCase() !== 'button') {
+            return;
+        }
+
+        const tr = target.closest('tr');
+        const url = tr.querySelector('a').href;
+        const codeBox = document.querySelector('.result code');
+        document.querySelector('.result .url').innerText = url;
+        codeBox.innerHTML = '';
+
+        fetch(url).then(res => res.json())
+            .then(arr => {
+                if (arr.length > 500) {
+                    arr.length = 500;
+                }
+                codeBox.innerHTML = syntaxHighlight(JSON.stringify(arr, null, 4));
+            })
+    })
+</script>
 </body>
 </html>
