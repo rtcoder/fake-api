@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    padding: 0 15px;
+}
+
+a {
+    color: #0099cc;
+}
+
+.api, table, .result {
+    width: 100%;
+}
+
+td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.result {
+    background: #2d2d2d;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.url, pre {
+    font-family: monospace;
+    color: #dddddd;
+}
+
+.url {
+    background: #353535;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+pre {
+    max-height: 300px;
+    overflow: auto;
+    padding: 0 15px;
+}
+
+pre::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+pre::-webkit-scrollbar-track {
+    background: rgba(112, 112, 112, 0.23);
+}
+
+/* Handle */
+pre::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+pre::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+code {
+    width: 100%;
+    white-space: break-spaces;
+}
+
+.string {
+    color: green;
+}
+
+.number {
+    color: darkorange;
+}
+
+.boolean {
+    color: blue;
+}
+
+.null {
+    color: magenta;
+}
+
+.key {
+    color: red;
+}
+
+button {
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background: #2cb045;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tbody tr {
+    height: 40px;
+}
+
+tr:hover {
+    background: #eaeaea;
+}
